@@ -1,0 +1,59 @@
+
+
+<h2>Search Results</h2>
+
+
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+{% if bookspub is not empty %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+           <th>publicationDate </th>
+            <th>Published</th>
+            <th>Category</th>
+            <th>Author</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for b in bookspub %}
+            <tr>
+                <td>{{ b.title }}</td>
+                <td>{{ b.publicationDate|date('Y-m-d')}}</td> 
+                <td>{{ b.published}}</td>
+                <td>{{ b.category }}</td>
+                <td>{{ b.Authors }}</td>
+                <td>
+                    <form method="post" action="{{ path('book_delete', {'id': b.id}) }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                   
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+number of published books : {{booksP}}
+number of unpublished books : {{booksNP}}
+
+{% else %}
+    <p>No books found</p>
+{% endif %}

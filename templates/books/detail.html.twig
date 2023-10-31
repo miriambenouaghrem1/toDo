@@ -1,0 +1,18 @@
+{# templates/author/edit.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Author{% endblock %}
+
+{% block body %}
+    <div style="text-align: center;">
+
+    <h1>Book</h1>
+
+    <form method="post">
+    title of Book : {{book.title}} </br>
+      publication Date : {{book.publicationDate|date('Y-m-d H:i:s')}}<br/>
+    author : {{book.authors}}
+    </form>
+</div>
+{% endblock %}

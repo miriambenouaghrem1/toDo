@@ -1,0 +1,46 @@
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #ddd; /* Add border to table cells */
+        padding: 8px;
+        text-align: left;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2; /* Add alternate row background color */
+    }
+</style>
+<table>
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>email</th>
+            <th>nombre books</th>
+            <th>actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for author in authors %}
+            <tr>
+                <td>{{ author.name }}</td>
+                <td>{{ author.email }}</td>
+                 <td>{{ author.nbbooks }}</td>
+
+                <td>
+                <form method="post" action="{{ path('auth_delete', {'id': author.id}) }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                     <form method="put" action="{{ path('auth_update', {'id': author.id}) }}">
+                        <button type="submit">edit</button>
+                    </form>
+                    </td>
+            </tr>
+
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,50 @@
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #ddd; /* Add border to table cells */
+        padding: 8px;
+        text-align: left;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2; /* Add alternate row background color */
+    }
+</style>
+ <form method="get" action="{{ path('book_list') }}">
+        <input type="text" name="search" placeholder="Search for books">
+        <button type="submit">Search</button>
+    </form>
+<table>
+    <thead>
+        <tr>
+            <th>title</th>
+            <th>published</th>
+            <th>category</th>
+            <th>author</th>
+            <th>actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.title }}</td>
+                 <td>{{ book.published }}</td>
+                 <td>{{ book.category }}</td>
+                 <td>{{ book.authors }}</td>
+
+                <td>
+                <form method="post" action="{{ path('book_delete', {'id': book.id}) }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                    
+                    </td>
+            </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
